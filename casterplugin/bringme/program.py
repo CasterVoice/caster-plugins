@@ -20,7 +20,12 @@ class BringMeProgram(BringMeBase):
         if sys.platform == "darwin":
             Popen(['open', '-a', entity])
         else:
-            Popen(entity)
+            windows = Window.get_matching_windows(executable=entity)
+
+            if windows:
+                windows[0].set_foreground()
+            else:
+                Popen(entity)
 
     def _bring_me_as(self, entity_name):
         """TODO: Docstring for bring_me_as.
