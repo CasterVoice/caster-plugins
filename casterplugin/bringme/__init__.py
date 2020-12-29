@@ -26,7 +26,7 @@ class BringMe(Plugin):
         for bring_me_class in bring_me_classes:
             bring_me_type = bring_me_class.type
 
-            entities = self.state.pop(bring_me_type, None)
+            entities = self.state.get(bring_me_type, None)
             rule = bring_me_class(entities)
             grammar.add_rule(rule)
             rule.subscribe(self._update_state)
